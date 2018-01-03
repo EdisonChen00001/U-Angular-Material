@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   //selector: '[app-servers]',
@@ -12,7 +13,7 @@ export class ServersComponent implements OnInit {
 
   allowNewServer:boolean = false;
   serverCreationStatus = "No Server was created"
-  serverName = '';
+  serverName = 'Testserver';
 
   constructor() {
     setTimeout(()=>{this.allowNewServer = true},2000);
