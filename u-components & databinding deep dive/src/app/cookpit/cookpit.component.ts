@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter,Output} from '@angular/core';
+import {  } from 'events';
 
 @Component({
   selector: 'app-cookpit',
@@ -12,15 +13,14 @@ export class CookpitComponent implements OnInit {
   ngOnInit() {
   }
 
-
+  @Output() serverCreated = new EventEmitter<{serverName:string,serverContent:string}>();
+  @Output() bluePrintCreated= new EventEmitter<{serverName:string,serverContent:string}>();
   newServerName = '';
   newServerContent = '';
+
   onAddServer() {
-    /*this.serverElements.push({
-      type: 'server',
-      name: this.newServerName,
-      content: this.newServerContent
-    });*/
+    this.serverCreated.emit({serverName:this.newServerName,
+      serverContent: this.newServerContent});
   }
 
   onAddBlueprint() {
