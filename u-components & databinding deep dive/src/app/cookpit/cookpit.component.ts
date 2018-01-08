@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter,Output} from '@angular/core';
-import {  } from 'events';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import { } from 'events';
+import { } from '@angular/core/src/linker/element_ref';
 
 @Component({
   selector: 'app-cookpit',
@@ -13,21 +14,26 @@ export class CookpitComponent implements OnInit {
   ngOnInit() {
   }
 
-  @Output() serverCreated = new EventEmitter<{serverName:string,serverContent:string}>();
-  @Output() bluePrintCreated= new EventEmitter<{serverName:string,serverContent:string}>();
+  @Output() serverCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
+  @Output() bluePrintCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
   //newServerName = '';
-  newServerContent = '';
+  //newServerContent = '';
 
-  onAddServer(nameInput:HTMLInputElement) {
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
+
+
+  onAddServer(nameInput: HTMLInputElement) {
+
     this.serverCreated.emit({
       serverName: nameInput.value,
-      serverContent: this.newServerContent});
+      serverContent: this.serverContentInput.nativeElement.value
+    });
   }
 
-  onAddBlueprint(nameInput:HTMLInputElement) {
+  onAddBlueprint(nameInput: HTMLInputElement) {
     this.bluePrintCreated.emit({
       serverName: nameInput.value,
-      serverContent: this.newServerContent});
+      serverContent: this.serverContentInput.nativeElement.value
+    });
   }
-
 }
