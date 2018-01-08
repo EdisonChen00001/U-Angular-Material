@@ -15,20 +15,19 @@ export class CookpitComponent implements OnInit {
 
   @Output() serverCreated = new EventEmitter<{serverName:string,serverContent:string}>();
   @Output() bluePrintCreated= new EventEmitter<{serverName:string,serverContent:string}>();
-  newServerName = '';
+  //newServerName = '';
   newServerContent = '';
 
-  onAddServer() {
-    this.serverCreated.emit({serverName:this.newServerName,
+  onAddServer(nameInput:HTMLInputElement) {
+    this.serverCreated.emit({
+      serverName: nameInput.value,
       serverContent: this.newServerContent});
   }
 
-  onAddBlueprint() {
-    /*this.serverElements.push({
-      type: 'blueprint',
-      name: this.newServerName,
-      content: this.newServerContent
-    });*/
+  onAddBlueprint(nameInput:HTMLInputElement) {
+    this.bluePrintCreated.emit({
+      serverName: nameInput.value,
+      serverContent: this.newServerContent});
   }
 
 }
